@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: fe-core-challenge
+server:
+  port: 8888
