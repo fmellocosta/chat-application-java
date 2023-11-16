@@ -1,5 +1,5 @@
 # Use the official OpenJDK base image
-FROM openjdk:11
+FROM openjdk:17
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/backend-service-0.0.1.jar /app/app.jar
 
 # Expose the port that the application will run on
-EXPOSE 8080
+EXPOSE 8888
 
 # Define the command to run the application
 CMD ["java", "-jar", "app.jar"]

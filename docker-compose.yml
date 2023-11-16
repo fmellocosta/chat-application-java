@@ -1,11 +1,13 @@
 version: '3'
 services:
   backend:
-    image: openjdk:11
+    image: openjdk:17
     build:
       context: ./backend
     ports:
-      - "8080:8080"
+      - "8888:8888"
+    networks:
+      - app-network
     environment:
       SPRING_DATA_MONGODB_URI: "mongodb://mongo:27017/chatdb"
 
@@ -20,7 +22,12 @@ services:
       context: ./frontend
     ports:
       - "3000:3000"
+    networks:
+      - app-network
     environment:
       REACT_APP_BACKEND_URL: "http://backend:8080"
     volumes:
       - ./frontend:/app
+
+networks:
+  app-network:
