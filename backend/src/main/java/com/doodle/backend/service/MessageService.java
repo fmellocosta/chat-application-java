@@ -19,15 +19,10 @@ public class MessageService {
         // Check if there are no messages in the database
         if (messageRepository.count() == 0) {
             // If no messages, add some initial messages
-            Message message1 = new Message();
-            message1.setSender("John");
-            message1.setContent("Hello, how are you?");
-            messageRepository.save(message1);
-
-            Message message2 = new Message();
-            message2.setSender("Alice");
-            message2.setContent("Hi John, I'm doing well. How about you?");
-            messageRepository.save(message2);
+            Message message = new Message();
+            message.setSender("Felipe");
+            message.setContent("First message, it was pre-populated");
+            messageRepository.save(message);
         }
     }
 

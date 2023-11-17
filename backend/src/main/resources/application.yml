@@ -3,6 +3,6 @@ spring:
     name: fe-core-challenge
   data:
     mongodb:
-      uri: mongodb://localhost:27017/chatdb    
+      uri: mongodb://mongo:27017/chatdb    
 server:
   port: 8888
