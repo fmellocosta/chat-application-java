@@ -1,59 +1,39 @@
-# The challenge (Fullstack Engineer)
-We want you to build a simple chat application which is able to send messages and display messages
-from all senders:
+# Doodle Chat
 
-<img src="frontend/chat.png" alt="Chat application look" width="250"/>
+Doodle Chat is a simple chat application with a backend built in Java using the Spring framework, MongoDB as the database, and a frontend developed with React and native JavaScript.
 
-We'd like you to create a simple backend with an API for messages that reads and writes data from a
-database, and a frontend to interact with that API.
+## Features
 
-Your API should have the following features:
+- View and send messages in real-time.
+- Messages are sorted by most recent, and existing messages are listed from newest to oldest.
+- Responsive design for both desktop and mobile devices.
 
-```
-1. Receive new messages from the client
-2. List all messages in chronological order for the client
-```
+### Backend
+- Java
+- Spring framework
+- MongoDB
 
-The design of the API is up to you.
+### Frontend
+- React
+- Native JavaScript
 
-Now, when it comes to the frontend, you should use your HTML and CSS skills to present the messages
-as depicted in the wireframe. We would like to test your knowledge of these technologies, 
-so we do not recommend using UI component libraries (material-ui, antd, ...).
+## Getting Started
 
-Your solution should be runnable locally using `docker-compose`. Don't forget to include all the
-dependencies of your service in the composer file, including your database system of choice.
+### Prerequisites
+- Docker
 
-## Rules
-We understand your time is precious and would not want you to spend more than **3 to 5 hours** on this
-over the span of **1 week max**.
+### Running the Application
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `docker-compose up` to start the containers.
+4. Access the application at `http://localhost:3000` in your browser.
 
-This repository includes codebase with Spring Boot for backend service and React for frontend.
-You are free to change the language or framework just please use a JVM language, preferably Java for your backend service. Feel free to use any framework,
-like Spring in this example. For the frontend, please use JavaScript (Vanilla JS, React, ...). We want you
-to provide a responsive implementation. Keep in mind that Doodle is used worldwide and has to work on
-commonly used browsers.
+## Project Structure
 
-## What we expect
+- **backend-service**: Java backend service using Spring Boot.
+- **frontend**: React frontend application.
 
-It is OK if the challenge is not completed. Try to prioritize it by what you think is more important. Tell us
-what motivated your technology choices, how you tackled the task, what you would do differently were you
-given more time, what you would differently a second time around, etc.
+## Folder Structure
 
-Here are some pointers for you of things we will be looking for:
-
-
-* Commit often, write useful commit messages
-* Code readability
-* Performance: it should load reasonably fast on a mobile device
-* Accessibility: the more usable the interface, the better
-* Design: we are not looking for pixel-pushing, but we love attention to detail
-
-## Next steps
-
-Send an email with a link to your repository solution to `code-challenge@doodle.com`.
-
-Make sure your email has the following subject: **FS-<yourname>**. So for example, if your name were
-"Paul Smith", your email subject would be **FS-Paul Smith**
-
-We will review your solution, we strive to get back to you in `1 week`. Sometimes it might take more.
-What we expect
+- `backend-service`: Backend Java code.
+- `frontend`: Frontend React code.
