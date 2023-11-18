@@ -1,39 +1,59 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Main container styles */
 .chat-container {
     display: flex;
     flex-direction: column;
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
 }
 
+/* Message container styles */
 .message-container {
     flex: 1;
-    overflow-y: auto;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 
+.message-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Individual message styles */
 .message {
     margin-bottom: 10px;
     padding: 8px;
-    border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f9f9f9;
 }
 
+/* Input container styles */
 .input-container {
     display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
 }
 
+/* Input field styles */
 input {
     flex: 1;
     margin-right: 10px;
     padding: 8px;
 }
 
+/* Button styles */
 button {
     padding: 8px 12px;
     border: none;
@@ -47,21 +67,27 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Add this CSS to your stylesheet or style component */
+/* Timestamp styles */
+.timestamp {
+    color: gray;
+    margin-top: 5px;
+}
 
+/* Delete button styles */
 .delete-button {
     background-color: #ff6961;
-    /* Red color, you can change it */
     color: #fff;
-    /* Text color */
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    margin-left: 10px;
-    /* Adjust the margin as needed */
+    margin-top: 5px;
 }
 
 .delete-button:hover {
     background-color: #d1483e;
-    /* Darker red color on hover, you can change it */
+}
+
+/* Highlighted message styles */
+.highlighted {
+    border: 1px solid #ddd;
 }

@@ -1,36 +1,47 @@
 package com.doodle.backend.service;
 
-import com.doodle.backend.model.Message;
-import com.doodle.backend.repository.MessageRepository;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.util.List;
+import com.doodle.backend.model.Message;
+import com.doodle.backend.repository.MessageRepository;
 
 @Service
 public class MessageService {
 
-    @Autowired
-    private MessageRepository messageRepository;
+	@Autowired
+	private MessageRepository messageRepository;
 
-    @PostConstruct
-    public void initializeMessages() {
-        // Check if there are no messages in the database
-        if (messageRepository.count() == 0) {
-            // If no messages, add some initial messages
-            Message message = new Message();
-            message.setSender("Felipe");
-            message.setContent("First message, it was pre-populated");
-            messageRepository.save(message);
-        }
-    }
+	@PostConstruct
+	public void initializeMessages() {
+		if (messageRepository.count() == 0) {
+			Message message = new Message();
+			message.setSender("Felipe");
+			message.setContent("First message, it was pre-populated");
+			message.setTimestamp(LocalDateTime.now());
+			messageRepository.save(message);
+		}
+	}
 
-    public List<Message> getAllMessages() {
-        return messageRepository.findAll();
-    }
+	public List<Message> getAllMessages() {
+		return messageRepository.findAll();
+	}
 
-    public Message saveMessage(Message message) {
-        return messageRepository.save(message);
-    }
+	public Message saveMessage(Message message) {
+		message.setTimestamp(LocalDateTime.now());
+		return messageRepository.save(message);
+	}
+
+	public Message getMessageById(String id) {
+		return messageRepository.findById(id).orElse(null);
+	}
+
+	public void deleteMessage(String id) {
+		messageRepository.deleteById(id);
+	}
 }

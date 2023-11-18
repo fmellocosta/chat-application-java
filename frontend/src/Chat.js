@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-import './Chat.css'; // Import the CSS file for styling
+import Message from './Message';
+import './Chat.css';
 
 const Chat = () => {
     const API_URL = 'http://localhost:8888/api/messages/';
@@ -25,36 +25,31 @@ const Chat = () => {
     const sendMessage = async () => {
         try {
             await axios.post(API_URL, newMessage);
-            setNewMessage({ sender: '', content: '' });
+            clearNewMessage();
             fetchMessages();
         } catch (error) {
             console.error('Error sending message:', error);
         }
     };
 
-    const deleteMessage = (id) => {
-        // Function to delete a specific message
-        fetch(`${API_URL}${id}`, {
-            method: 'DELETE',
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                // Update the state after successful deletion
-                setMessages(prevMessages => prevMessages.filter(message => message.id !== id));
-            })
-            .catch(error => console.error('Error deleting message:', error));
+    const deleteMessage = async (id) => {
+        try {
+            await axios.delete(`${API_URL}${id}`);
+            setMessages(prevMessages => prevMessages.filter(message => message.id !== id));
+        } catch (error) {
+            console.error('Error deleting message:', error);
+        }
+    };
+
+    const clearNewMessage = () => {
+        setNewMessage({ sender: '', content: '' });
     };
 
     return (
         <div className="chat-container">
             <div className="message-container">
-                {messages.map((message) => (
-                    <div key={message.id} className="message">
-                        <strong>{message.sender}:</strong> {message.content}
-                        <button className="delete-button" onClick={() => deleteMessage(message.id)}>Delete</button>
-                    </div>
+                {messages.map((message, index, messagesList) => (
+                    <Message key={message.id} message={message} onDelete={deleteMessage} isLastItem={index === messagesList.length -1}/>
                 ))}
             </div>
 

@@ -1,54 +1,42 @@
-// MessageController.java
 package com.doodle.backend.controller;
 
-import com.doodle.backend.model.Message;
-import com.doodle.backend.repository.MessageRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.doodle.backend.model.Message;
+import com.doodle.backend.service.MessageService;
 
 @RestController
 @RequestMapping("/api/messages")
 public class MessageController {
 
-    private final MessageRepository messageRepository;
-
     @Autowired
-    public MessageController(MessageRepository messageRepository) {
-        this.messageRepository = messageRepository;
-    }
+    private MessageService messageService;
 
-    // Endpoint to get all messages
     @GetMapping
-    public ResponseEntity<List<Message>> getAllMessages() {
-        List<Message> messages = messageRepository.findAll();
-        return ResponseEntity.ok(messages);
+    public List<Message> getAllMessages() {
+        return messageService.getAllMessages();
     }
 
-    // Endpoint to add a new message
     @PostMapping
-    public ResponseEntity<Message> addMessage(@RequestBody Message message) {
-        if (message.getContent() == null || message.getSender() == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        Message savedMessage = messageRepository.save(message);
-        return new ResponseEntity<>(savedMessage, HttpStatus.CREATED);
+    public Message addMessage(@RequestBody Message message) {
+        return messageService.saveMessage(message);
     }
 
-    // Endpoint to delete a specific message by ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMessage(@PathVariable String id) {
-        Optional<Message> messageOptional = messageRepository.findById(id);
-        if (messageOptional.isPresent()) {
-            messageRepository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public void deleteMessage(@PathVariable String id) {
+        Message messageToDelete = messageService.getMessageById(id);
+
+        if (messageToDelete != null) {
+            messageService.deleteMessage(id);
         }
     }
 }
