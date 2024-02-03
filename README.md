@@ -1,6 +1,6 @@
-# Doodle Chat
+# Chat
 
-Doodle Chat is a simple chat application with a backend built in Java using the Spring framework, MongoDB as the database, and a frontend developed with React and native JavaScript.
+Chat is a simple chat application with a backend built in Java using the Spring framework, MongoDB as the database, and a frontend developed with React and native JavaScript.
 
 ## Features
 
@@ -30,10 +30,10 @@ Doodle Chat is a simple chat application with a backend built in Java using the 
 
 ## Project Structure
 
-- **backend-service**: Java backend service using Spring Boot.
+- **backend**: Java backend service using Spring Boot.
 - **frontend**: React frontend application.
 
 ## Folder Structure
 
-- `backend-service`: Backend Java code.
+- `backend`: Backend Java code.
 - `frontend`: Frontend React code.
